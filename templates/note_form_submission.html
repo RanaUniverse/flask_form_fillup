@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/note_form_submission.css') }}">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Submission Received</h1>
+        <p>Thank you for submitting your details. Here's what we received:</p>
+        <div class="details">
+            <p><strong>Full Name:</strong> {{ fullname }}</p>
+            <p><strong>Phone Number:</strong> {{ phone_no }}</p>
+            <p><strong>Gender:</strong> {{ gender }}</p>
+            <p><strong>Note Title:</strong> {{ note_title }}</p>
+            <p><strong>Note Content:</strong> {{ note_subject }}</p>
+        </div>
+    </div>
+</body>
+
+</html>
