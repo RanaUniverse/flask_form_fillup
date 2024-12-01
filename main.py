@@ -63,5 +63,23 @@ def submit_registration_form_post():
     )
 
 
+@app.get("/new_note_making")
+def new_note_making():
+    print("A user want to make a new note.")
+    return render_template("note_related/make_new_note.html")
+
+
+@app.post("/make_new_note")
+def new_note_making_post():
+    print("A user has just fillup his note data.")
+    title_value = request.form.get("new_note_title")
+    sub_value = request.form.get("new_note_sub")
+    return render_template(
+        "note_related/new_note_submit.html",
+        title_data=title_value,
+        subject_data=sub_value,
+    )
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=9999, debug=True)
