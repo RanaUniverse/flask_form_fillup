@@ -13,7 +13,7 @@ def home_get():
 @app.get("/note_form_fillup")
 def note_form_page():
     print("A User want to fillup the form")
-    return render_template("note_form_fillup.html")
+    return render_template("/note_related/note_form_fillup.html")
 
 
 # This below will come when user will do form fillup and then press submit
@@ -26,7 +26,7 @@ def submit_note_form():
     note_subject = request.form.get("note_subject")
 
     return render_template(
-        "note_form_submission.html",
+        "/note_related/note_form_submission.html",
         fullname=fullname,
         phone_no=phone_no,
         gender=gender,
@@ -38,7 +38,29 @@ def submit_note_form():
 @app.get("/submit_note_form")
 def wrong_note_submit():
     # This will execute when user will wrongly refresh or visit the url
-    return render_template("note_form_link_get.html")
+    return render_template("/note_related/note_form_link_get.html")
+
+
+@app.get("/new_registration_form")
+def registration_form():
+    print("Someone want to register here.")
+    return render_template("/new_user/registration_form.html")
+
+
+@app.post("/submit_registration_form")
+def submit_registration_form_post():
+    print("A User want to make a new account here")
+
+    fullname = request.form.get("fullname")
+    phone_no = request.form.get("phone_no")
+    gender = request.form.get("gender")
+    # Render template with form data
+    return render_template(
+        "new_user/registration_submit.html",
+        fullname=fullname,
+        phone_no=phone_no,
+        gender=gender,
+    )
 
 
 if __name__ == "__main__":
