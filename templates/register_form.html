@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Making New Account</title>
+    <!-- Link to external CSS -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"> -->
+</head>
+
+<body>
+    <h1>You Are on Your Way to Make a New Account!</h1>
+    <form action="/register_submit" method="post">
+
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter your name"><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email"><br><br>
+
+        <label for="username">Write a new username to register</label><br><br>
+        <input type="text" name="username" id="username" placeholder="What Unique username you want?"><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" placeholder="Enter a secure password"><br><br>
+
+        <p>What is Your Gender</p>
+
+        <input type="radio" name="gender" id="male" value="Male">
+        <label for="male">I am Male</label>
+        <br>
+        <input type="radio" name="gender" id="female" value="Female">
+        <label for="female">I am a girl</label>
+        <br>
+        <input type="radio" name="gender" id="others" value="Others">
+        <label for="others">I am both</label>
+        <br>
+        <input type="radio" name="gender" id="hidden" value="Hidden">
+        <label for="hidden">I dont want to say</label>
+        <br><br>
+
+        <button type="submit" formtarget="_blank" name="button" value="create">Create Account Button</button>
+        <br><br>
+        <button type="submit" formtarget="_blank" name="button" value="update">Update Your Account</button>
+        <br><br>
+        <button type="submit" formtarget="_blank" name="button" value="delete">Delete The Account</button>
+        <br><br>
+        <button type="reset" name="reset_the_form">Reset Form Data </button>
+        <br><br>
+        <button type="button" onclick="alert('Button clicked!')">Click Me alert example</button>
+        <br><br>
+        <br><br>
+
+        <hr>
+    </form>
+</body>
+
+</html>

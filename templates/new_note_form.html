@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Making New Note</title>
+</head>
+
+<body>
+    <h1>You want to make a new note </h1>
+    <h2>Please Fill YOur usrname/email and password and then enter the note details
+        to submit the new note, if you pass wrong details then i will not take your
+        note as success.</h2>
+    <span style="font-size: 100px; user-select: none;">📖</span>
+    <span style="font-size: 100px; user-select: none;">✍️</span>
+    <form action="/new_note_submit" method="post">
+
+        <fieldset>
+            <h2>Write Your Account Details</h2>
+            <label for="username">Write Your usrname/Email id</label>
+            <br>
+            <input type="text" name="username" id="username" placeholder="What is ur unique usrname or email id">
+            <br><br>
+            <label for="account_password">What is ur account password</label>
+            <br>
+            <input type="text" name="account_password" id="account_password"
+                placeholder="What is ur password for ur account">
+        </fieldset>
+        <br>
+        <fieldset>
+            <h2>Write YOur Note Content Here Below </h2>
+            <legend>What is YOur Note Content</legend>
+            <label for="note_title">What is ur note title</label>
+            <br>
+            <input type="text" name="note_title" id="note_title " placeholder="Note Title???">
+            <br><br>
+            <label for="note_sub">What is ur note subject</label>
+            <br>
+            <textarea name="note_sub" id="note_sub" placeholder="Write your note content here..."></textarea>
+
+            <br>
+        </fieldset>
+        <br>
+        <!-- Buttons -->
+        <button type="submit" formtarget="_blank" name="button" value="create">Create Note</button>
+        <button type="submit" formtarget="_blank" name="button" value="update">Update Note</button>
+        <button type="submit" formtarget="_blank" name="button" value="delete">Delete Note</button>
+        <br><br>
+        <button type="reset" name="reset_the_form">Reset All Data</button>
+        <button type="button" onclick="alert('Custom Button Clicked!')">Click Me</button>
+    </form>
+</body>
+
+</html>

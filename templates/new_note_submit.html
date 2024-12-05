@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Note Form</title>
+</head>
+
+<body>
+    <h1>Note Submitted Successfully! 🎉</h1>
+    <p>Thank you for submitting your note. Here are the details:</p>
+
+    <fieldset>
+        <legend><strong>Account Details</strong></legend>
+        <p><strong>Username/Email:</strong> {{ username }}</p>
+    </fieldset>
+
+    <fieldset>
+        <legend><strong>Note Details</strong></legend>
+        <p><strong>Note Title:</strong> {{ note_title }}</p>
+        <p><strong>Note Content:</strong> {{ note_content }}</p>
+    </fieldset>
+
+    <br>
+    <a href="/new_note">
+        <button type="button">Create Another Note</button>
+    </a>
+</body>
+
+</html>

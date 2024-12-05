@@ -4,24 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My New Website</title>
+    <title>Testing Website in Flask</title>
 </head>
 
 <body>
-    <h1>Welcome to My Website</h1>
-    <h2>Click the link below to fill out a form:
-        <br><br>
-        <a href="/note_form_fillup" target="_blank">
-            Go to Form Note Form Fill-Up Page
-        </a>
-    </h2>
-    <img src="/static/images/linux_logo.png" alt="This is my logo" width="200">
-    <h2>
-        <a href="/new_registration_form">Register Your Account in our website</a>
-    </h2>
-    <h2>
-        <a href="/new_note_making">Make a new note here to save in our system.</a>
-    </h2>
+    <h1>This is my testing website </h1>
+    <!-- <img src="../static/images/icons_logo/linux_logo.png" alt="my linux logo 1" width="200"> -->
+    <br>
+    <img src="{{ url_for('static', filename='images/icons_logo/linux_logo.png') }}" alt="My Linux Logo 2" width="200">
+    <br>
+    This image is taking from url_for inside the html file.
+    <br>
+    <h2><a href="/register">Register Your New Account To Use Our Website</a></h2>
+    <br>
+    <h2><a href="/new_note">Make A New Note After Account Creation</a></h2>
+
 </body>
 
 </html>

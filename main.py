@@ -1,84 +1,126 @@
-from flask import Flask, request, render_template
+from flask import (
+    Flask,
+    render_template,
+    url_for,
+    redirect,
+    flash,
+    request,
+    # abort,
+)
 
 app = Flask(__name__)
+app.secret_key = "dummy_secret_key"  # Required for flash messages
 
 
-# The main index.html can return the /submit_note_form to fillup form
-@app.get("/")
-def home_get():
-    print("A user just give get req here now")
+@app.route("/")
+def hello_world():
+    # return "<p>Hello, World!</p>"
+
     return render_template("index.html")
 
 
-@app.get("/note_form_fillup")
-def note_form_page():
-    print("A User want to fillup the form")
-    return render_template("/note_related/note_form_fillup.html")
+@app.route("/h/<name>")
+def hello(name: str | None = None):
+    return "A Good Things by h"
 
 
-# This below will come when user will do form fillup and then press submit
-@app.post("/submit_note_form")
-def submit_note_form():
-    fullname = request.form.get("fullname")
-    phone_no = request.form.get("phone_no")
+@app.route("/linux_logo")
+def example():
+    # Generate a URL for the static file
+    return (
+        f"The Linux Logo, image URL is: "
+        f"{url_for('static', filename='images/icons_logo/linux_logo.png')}"
+    )
+
+
+@app.errorhandler(404)
+def page_not_found(e: str | None):
+    """This is for any get request which is not made in my code"""
+    # note that we set the 404 status explicitly
+    return render_template("404.html", error_data=e), 404
+
+
+@app.route("/register", methods=["GET"])
+def register():
+    """
+    This will allow the user to show him the form fillup for user
+    register form to show him
+    """
+    return render_template("register_form.html")
+
+
+@app.route("/register_submit", methods=["POST"])
+def register_submit():
+    name = request.form.get("name")
+    email = request.form.get("email")
+    password = request.form.get("password")
     gender = request.form.get("gender")
+    button = request.form.get("button")
+    print(button)
+    print(f"Name: {name}, Email: {email}, Password: {password}")
+    flash("Registration successful! Thank you for signing up.")
+    # return redirect(url_for("register"))
+
+    gender = request.form.get("gender")
+
+    if gender == "Male":
+        gender_message = "Hello, you are a boy. Thanks!"
+    elif gender == "Female":
+        gender_message = "You are a super Queen!"
+    elif gender == "Others":
+        gender_message = "You are God-gifted!"
+    elif gender == "Hidden":
+        gender_message = "You have a hidden personality!"
+    else:
+        gender_message = "This has not checkied yet"
+
+    # here i used logic inside python not in html
+    if button == "create":
+        pass  # i want for this it will execute the render template
+    elif button == "update":
+        return "YOu wanted to update the account"
+    elif button == "delete":
+        return "YOu want to dele the acccount, i need confirmation"
+    else:
+        return "There is some problem in the button you pressed"
+
+    return render_template(
+        "register_submit.html",
+        name_data=name,
+        email_data=email,
+        password_data=password,
+        gender_data=gender,
+        gender_message_data=gender_message,
+    )
+
+
+@app.route("/new_note", methods=["GET"])
+def new_note():
+    """
+    This will trigger when user want to make new note
+    """
+    return render_template("new_note_form.html")    
+
+
+
+@app.route("/new_note_submit", methods=["POST"])
+def submit_note():
+    """
+    Handles note submission and displays the details.
+    """
+    username = request.form.get("username")
     note_title = request.form.get("note_title")
-    note_subject = request.form.get("note_subject")
+    note_content = request.form.get("note_sub")
 
     return render_template(
-        "/note_related/note_form_submission.html",
-        fullname=fullname,
-        phone_no=phone_no,
-        gender=gender,
+        "new_note_submit.html",
+        username=username,
         note_title=note_title,
-        note_subject=note_subject,
+        note_content=note_content,
     )
 
 
-@app.get("/submit_note_form")
-def wrong_note_submit():
-    # This will execute when user will wrongly refresh or visit the url
-    return render_template("/note_related/note_form_link_get.html")
 
-
-@app.get("/new_registration_form")
-def registration_form():
-    print("Someone want to register here.")
-    return render_template("/new_user/registration_form.html")
-
-
-@app.post("/submit_registration_form")
-def submit_registration_form_post():
-    print("A User want to make a new account here")
-
-    fullname = request.form.get("fullname")
-    phone_no = request.form.get("phone_no")
-    gender = request.form.get("gender")
-    # Render template with form data
-    return render_template(
-        "new_user/registration_submit.html",
-        fullname=fullname,
-        phone_no=phone_no,
-        gender=gender,
-    )
-
-
-@app.get("/new_note_making")
-def new_note_making():
-    print("A user want to make a new note.")
-    return render_template("note_related/make_new_note.html")
-
-
-@app.post("/make_new_note")
-def new_note_making_post():
-    print("A user has just fillup his note data.")
-    title_value = request.form.get("new_note_title")
-    sub_value = request.form.get("new_note_sub")
-    return render_template(
-        "note_related/new_note_submit.html",
-        title_data=title_value,
-        subject_data=sub_value,
-    )
 
 
 if __name__ == "__main__":
